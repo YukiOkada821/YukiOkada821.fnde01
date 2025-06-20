@@ -1,3 +1,5 @@
+'use strict'
+
 const codeList = {
   北海道: "016000",
   青森: "020000",
@@ -65,27 +67,43 @@ async function getWeather(code) {
   const response = await fetch(`https://www.jma.go.jp/bosai/forecast/data/overview_forecast/${code}.json`);
   const json = await response.json(); //操作できるようにJSON形式に変換
   // DOM操作
-  document.querySelector("h1").textContent = json.targetArea;
-  document.querySelector("#time").textContent = json.reportDatetime
+  document.querySelector("h1").textContent = json.targetArea; //都道府県名
+  document.querySelector("#time").textContent = json.reportDatetime //発表時間
     .replace("T", " ")
     .replace("+09:00", "");
-  document.querySelector("#text").innerHTML = json.text.replace(/\n|\r/g, "<br>");
-  document.querySelector("#pubOffice").textContent = json.publishingOffice;
+  document.querySelector("#text").innerHTML = json.text.replace(/\n|\r/g, "<br>"); //概要
+  document.querySelector("#pubOffice").textContent = json.publishingOffice; //情報発表元
 }
 
-function showCurrentTime () {
+function showCurrentTime () { //現在時刻入れる
   const now = new Date();
-
   const hour = now.getHours();
   const minutes = now.getMinutes();
 
-  const currentTime = `現在の時刻は ${hour}時${minutes}分 です。`; //'ではだめ
+  const currentTime = `現在の時刻は ${hour}時${minutes}分 です。`; //'ではだめ。バッククォート使う
   console.log(currentTime);
   document.querySelector("#currentTime").textContent = currentTime;
 }
 
-getWeather(230000); //初期値は愛知県
+document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const prefCode = params.get("pref");
+
+    if (prefCode) {
+       console.log("受け取った県コード:", prefCode);
+         getWeather(prefCode); //初期値は愛知県
+       const display = document.getElementById("prefDisplay");
+       if (display) {
+           display.textContent = `選択された県コード: ${prefCode}`;
+       }
+    } else {
+        console.warn("県コードがURLに含まれていません");
+    }
+});
+
 showCurrentTime();
+
+
 
 
 // //メモ
@@ -95,7 +113,7 @@ showCurrentTime();
 // 　サーバーに対してHTTPリクエストを送信、その結果を受け取る役割
 // /\n|\r/gで改行
 
-// fetchで今回取ってくる情報の中身
+// fetchで今回取ってくる情報の中身の例
 // {
 //   "publishingOffice": "沖縄気象台",
 //   "reportDatetime": "2025-06-18T16:36:00+09:00",

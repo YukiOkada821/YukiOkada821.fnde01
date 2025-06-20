@@ -16,13 +16,18 @@
 </head>
 
 <body>
+    <!-- <link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet"> -->
     <header>
-        <p>天気を知りたい県をクリックして下さい。このページでは気象庁のJSONデータを取得し表示しています</p>
+        <h2>☀️天気予報情報サイト🌧️</h2>
+        <p>このページでは気象庁のJSONデータを取得し表示しています</p>
+        <a href="https://www.jma.go.jp/jma/index.html" target="_blank">気象庁のHPはこちら(新しいタブで開きます)</a>
     </header>
-    
-    </div><div id="jmap"></div>
-    
+    <div>
+        <p id="info">👇マップをクリックすると、天気が確認できます👇</p>
+    </div>
     <main>
+       
+        <div id="jmap"></div>
         <div class="data">
             <h1></h1>
             <h2>発表時間</h2>
@@ -34,7 +39,10 @@
             <h2>情報発表元</h2>
             <p id="pubOffice"></p>
         </div>
-    </main>        
+    </main>
+    <footer>
+        <a href="file:///c%3A/Users/1491021/Desktop/dig-foundations/dig-schooling/final-task/index-top.html" onclick="history.back()">戻る</a>
+    </footer>
     <script type="text/javascript" src="script.js"></script>
 </body>
 
