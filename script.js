@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (prefCode) {
        console.log("受け取った県コード:", prefCode);
-         getWeather(prefCode); //初期値は愛知県
+         getWeather(prefCode); //初期値は受け取ったコードで設定
        const display = document.getElementById("prefDisplay");
        if (display) {
            display.textContent = `選択された県コード: ${prefCode}`;
