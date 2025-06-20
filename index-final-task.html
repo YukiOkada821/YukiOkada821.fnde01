@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天気予報情報サイト</title>
+    <link rel="stylesheet" href="style.css"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="./jmap.js"></script>
+    <script type = "text/javascript">
+        $(document).ready(function() {  // $(document).ready()はページのHTML構造が完全に読み込まれてから処理するメソッド
+            $('#jmap').jmap();   //$（）はHTML内のIDがjmapの要素。jmap()はその名前のjQueryプラグインを呼び出す
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <p>天気を知りたい県をクリックして下さい。このページでは気象庁のJSONデータを取得し表示しています</p>
+    </header>
+    
+    </div><div id="jmap"></div>
+    
+    <main>
+        <div class="data">
+            <h1></h1>
+            <h2>発表時間</h2>
+            <p id="time"></p>
+            <h2>現在時刻</h2>
+            <p id="currentTime"></p>
+            <h2>概要</h2>
+            <p id="text"></p>
+            <h2>情報発表元</h2>
+            <p id="pubOffice"></p>
+        </div>
+    </main>        
+    <script type="text/javascript" src="script.js"></script>
+</body>
+
+</html>
